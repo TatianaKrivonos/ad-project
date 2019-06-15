@@ -9,11 +9,10 @@
         :key="ad.id">
           <v-layout row>
             <v-flex xs4>
-              <v-card-media
+              <v-img
               :src="ad.imgSrc"
-              height="160">
-
-              </v-card-media>
+              height="160">gs
+              </v-img>
             </v-flex>
             <v-flex xs8>
               <v-card-text>
