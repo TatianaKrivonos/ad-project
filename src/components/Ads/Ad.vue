@@ -2,7 +2,21 @@
   <v-container>
     <v-layout row>
       <v-flex xs12>
-        <h1>Ad</h1>
+        <v-card>
+          <v-img
+            src="http://wallpapers-image.ru/1280x720/winter/wallpapers/winter-wallpapers-1280x720-00012.jpg"
+            height="300">
+          </v-img>
+          <v-card-text>
+            <h1 class="text--primary">lorem</h1>
+            <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты.</p>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn class="warning" flat>Edit</v-btn>
+            <v-btn class="success">Buy</v-btn>
+          </v-card-actions>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
