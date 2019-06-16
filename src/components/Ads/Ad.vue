@@ -4,12 +4,12 @@
       <v-flex xs12>
         <v-card>
           <v-img
-            src="http://wallpapers-image.ru/1280x720/winter/wallpapers/winter-wallpapers-1280x720-00012.jpg"
+            :src="ad.imgSrc"
             height="300">
           </v-img>
           <v-card-text>
-            <h1 class="text--primary">lorem</h1>
-            <p>Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты.</p>
+            <h1 class="text--primary">{{ ad.title }}</h1>
+            <p>{{ ad.descr }}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -23,9 +23,11 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-
+    props: ['id'],
+    computed: {
+      ad () {
+        const id = this.id
+        return this.$store.getters.adById(id)
       }
     }
   }

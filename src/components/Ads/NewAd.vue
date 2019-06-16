@@ -79,10 +79,10 @@
           const ad = {
             title: this.title,
             descr: this.descr,
-            promo: this.promo
+            promo: this.promo,
+            imgSrc: 'http://fentezi-mir.ru/images/1/angel_326.jpg'
           }
-
-          console.log(ad)
+          this.$store.dispatch('createAd', ad)
         }
       }
     }
