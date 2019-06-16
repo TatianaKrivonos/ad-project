@@ -5,13 +5,13 @@
         <h1 class="text--secondary mb-3">My ads</h1>
         <v-card
         class="elevation-10 mb-4"
-        v-for="ad in ads"
+        v-for="ad in myAds"
         :key="ad.id">
           <v-layout row>
             <v-flex xs4>
               <v-img
               :src="ad.imgSrc"
-              height="160">gs
+              height="160">
               </v-img>
             </v-flex>
             <v-flex xs8>
@@ -34,24 +34,9 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-        ads: [
-          {
-            title: 'First ad',
-            descr: 'hello',
-            promo: false,
-            imgSrc: 'http://wallpapers-images.ru/1280x720/space/wallpapers/wallpapers-space-025.jpg',
-            id: '1'
-          },
-          {
-            title: 'Second ad',
-            descr: 'hello',
-            promo: true,
-            imgSrc: 'http://wallpapers-image.ru/1280x720/winter/wallpapers/winter-wallpapers-1280x720-00012.jpg',
-            id: '2'
-          }
-        ]
+    computed: {
+      myAds () {
+        return this.$store.getters.myAds
       }
     }
   }
