@@ -1,4 +1,4 @@
-import * as fb from 'firebase/app'
+import * as fb from 'firebase'
 
 class User {
   constructor (id) {

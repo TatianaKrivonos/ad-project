@@ -7,12 +7,13 @@
             <v-toolbar-title>Login form</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form v-model="valid" validation>
+            <v-form v-model="valid" ref="form" validation>
               <v-text-field
                 prepend-icon="person"
                 name="email"
                 label="Email"
                 type="email"
+                required
                 v-model="email"
                 :rules="emailRules"
               >
@@ -21,9 +22,9 @@
                 prepend-icon="lock"
                 name="password"
                 label="Password"
-                id="password"
                 type="password"
                 :counter="6"
+                required
                 v-model="password"
                 :rules="passwordRules"
               >
@@ -58,7 +59,7 @@
         ],
         passwordRules: [
           v => !!v || 'Password is required',
-          v => v.length >=6 || 'Password must be equal or more than 6 characters'
+          v => (v && v.length >= 6) || 'Password must be equal or more than 6 characters'
         ]
       }
     },
@@ -67,7 +68,7 @@
         if (this.$refs.form.validate()) {
           const user = {
             email: this.email,
-            password: this.passwoed
+            password: this.password
           }
         }
       }

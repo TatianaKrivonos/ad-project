@@ -7,12 +7,13 @@
             <v-toolbar-title>Registration</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form v-model="valid" lazy-validation>
+            <v-form v-model="valid" ref="form" validation>
               <v-text-field
                 prepend-icon="person"
                 name="email"
                 label="Email"
                 type="email"
+                required
                 v-model="email"
                 :rules="emailRules"
               >
@@ -23,6 +24,7 @@
                 label="Password"
                 type="password"
                 :counter="6"
+                required
                 v-model="password"
                 :rules="passwordRules"
               >
@@ -34,8 +36,9 @@
                 id="password"
                 type="password"
                 :counter="6"
+                required
                 v-model="confirmPassword"
-                :rules="coinfirmPasswordRules"
+                :rules="confirmPasswordRules"
               >
               </v-text-field>
             </v-form>
@@ -69,9 +72,9 @@
         ],
         passwordRules: [
           v => !!v || 'Password is required',
-          v => v.length >=6 || 'Password must be equal or more than 6 characters'
+          v => (v && v.length >= 6) || 'Password must be equal or more than 6 characters'
         ],
-        coinfirmPasswordRules: [
+        confirmPasswordRules: [
           v => !!v || 'Password is required',
           v => v === this.password || 'Password should match'
         ]
@@ -82,7 +85,7 @@
         if (this.$refs.form.validate()) {
           const user = {
             email: this.email,
-            password: this.passwoed
+            password: this.password
           }
           this.$store.dispatch('registerUser', user)
         }
