@@ -4,7 +4,7 @@ import Vuetify from'vuetify'
 import App from './App'
 import router from './router'
 import store from './store'
-import * as fb from 'firebase'
+import * as fb from 'firebase/app'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.use(Vuetify, {
@@ -21,7 +21,7 @@ new Vue({
   components: { App },
   template: '<App/>',
   created () {
-    var app = fb.initializeApp({
+    fb.initializeApp({
       apiKey: 'AIzaSyA04OcziQ17L6V8m5ztohIrUeAjRrtvbiQ',
       authDomain: 'ads-project.firebaseapp.com',
       databaseURL: 'https://ads-project.firebaseio.com',

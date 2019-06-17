@@ -84,6 +84,7 @@
             email: this.email,
             password: this.passwoed
           }
+          this.$store.dispatch('registerUser', user)
         }
       }
     }
