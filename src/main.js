@@ -4,6 +4,7 @@ import Vuetify from'vuetify'
 import App from './App'
 import router from './router'
 import store from './store'
+import * as fb from 'firebase'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.use(Vuetify, {
@@ -19,4 +20,14 @@ new Vue({
   store,
   components: { App },
   template: '<App/>',
+  created () {
+    var app = fb.initializeApp({
+      apiKey: 'AIzaSyA04OcziQ17L6V8m5ztohIrUeAjRrtvbiQ',
+      authDomain: 'ads-project.firebaseapp.com',
+      databaseURL: 'https://ads-project.firebaseio.com',
+      projectId: 'ads-project',
+      storageBucket: 'ads-projec.appspot.com',
+      messagingSenderId: '352599408346'
+    });
+  }
 });
