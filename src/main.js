@@ -28,6 +28,12 @@ new Vue({
       projectId: 'ads-project',
       storageBucket: 'ads-projec.appspot.com',
       messagingSenderId: '352599408346'
-    });
+    })
+
+    fb.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('autoLoginUser', user)
+      }
+    })
   }
 });
