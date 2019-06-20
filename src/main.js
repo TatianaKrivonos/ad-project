@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as fb from 'firebase'
+import  './stylus/main.styl'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.use(Vuetify, {
