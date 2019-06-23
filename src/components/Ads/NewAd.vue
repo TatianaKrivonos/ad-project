@@ -53,7 +53,8 @@
           <v-flex xs12>
             <v-spacer></v-spacer>
             <v-btn
-              :disabled="!valid"
+              :loading="loading"
+              :disabled="!valid || loading"
               class="success"
               @click="createAd"
               >Create Ad</v-btn>
@@ -73,6 +74,11 @@
         valid: false
       }
     },
+    computed: {
+      loading () {
+        return this.$store.getters.loading
+      }
+    },
     methods: {
       createAd () {
         if (this.$refs.form.validate()) {
@@ -83,6 +89,10 @@
             imgSrc: 'http://fentezi-mir.ru/images/1/angel_326.jpg'
           }
           this.$store.dispatch('createAd', ad)
+            .then(() => {
+              this.$router.push('/list')
+            })
+            .catch(() => {})
         }
       }
     }
