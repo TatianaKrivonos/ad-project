@@ -14,33 +14,14 @@ class Ad {
 
 export default {
   state: {
-    ads: [
-      {
-        title: 'First ad',
-        descr: 'hello',
-        promo: false,
-        imgSrc: 'http://wallpapers-images.ru/1280x720/space/wallpapers/wallpapers-space-025.jpg',
-        id: '1'
-      },
-      {
-        title: 'Second ad',
-        descr: 'hello',
-        promo: true,
-        imgSrc: 'http://wallpapers-image.ru/1280x720/winter/wallpapers/winter-wallpapers-1280x720-00012.jpg',
-        id: '2'
-      },
-      {
-        title: 'Third ad',
-        descr: 'hello',
-        promo: true,
-        imgSrc: 'http://wallpapers-images.ru/1280x720/autumn/wallpapers/wallpapers-autumn-07.jpg',
-        id: '3'
-      }
-    ]
+    ads: []
   },
   mutations: {
     createAd (state, payload) {
       state.ads.push(payload)
+    },
+    loadAds (state, payload) {
+      state.ads = payload
     }
   },
   actions: {
@@ -48,7 +29,6 @@ export default {
       commit('clearError')
       commit('setLoading', true)
       // commit('createAd', payload)
-
       try {
         const newAd = new Ad(
           payload.title,
@@ -64,6 +44,29 @@ export default {
           id: ad.key
         })
 
+      } catch (error) {
+        commit('setError', error.message)
+        commit('setLoading', false)
+        throw error
+      }
+    },
+    async fetchAds ({commit}) {
+      commit('clearError')
+      commit('setLoading', true)
+      const resultAds = []
+      try {
+        const fbVal = await fb.database().ref('ads').once('value')
+        const ads = fbVal.val()
+
+        Object.keys(ads).forEach(key => {
+          const ad = ads[key]
+          resultAds.push(
+            new Ad(ad.title, ad.descr, ad.ownerId, ad.imgSrc, ad.promo, key)
+          )
+        })
+
+        commit('loadAds', resultAds)
+        commit('setLoading', false)
       } catch (error) {
         commit('setError', error.message)
         commit('setLoading', false)
