@@ -27,15 +27,23 @@
           <v-flex xs12>
             <v-btn
               class="warning"
+              @click="triggerUpload"
             >
               Upload
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
+            <input
+              ref="fileInput"
+              type="file"
+              style="display:none;"
+              accept="image/*"
+              @change="onFileChange"
+            >
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex xs12>
-            <img src="" height="150">
+            <img :src="imgSrc" height="150" v-if="imgSrc">
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -54,7 +62,7 @@
             <v-spacer></v-spacer>
             <v-btn
               :loading="loading"
-              :disabled="!valid || loading"
+              :disabled="!valid || !image || loading"
               class="success"
               @click="createAd"
               >Create Ad</v-btn>
@@ -71,7 +79,9 @@
         title: '',
         descr: '',
         promo: false,
-        valid: false
+        valid: false,
+        image: null,
+        imgSrc: ''
       }
     },
     computed: {
@@ -81,12 +91,12 @@
     },
     methods: {
       createAd () {
-        if (this.$refs.form.validate()) {
+        if (this.$refs.form.validate() && this.image) {
           const ad = {
             title: this.title,
             descr: this.descr,
             promo: this.promo,
-            imgSrc: 'http://fentezi-mir.ru/images/1/angel_326.jpg'
+            image: this.image
           }
           this.$store.dispatch('createAd', ad)
             .then(() => {
@@ -94,6 +104,18 @@
             })
             .catch(() => {})
         }
+      },
+      triggerUpload () {
+        this.$refs.fileInput.click()
+      },
+      onFileChange (event) {
+        const file = event.target.files[0]
+        const reader = new FileReader()
+        reader.onload = e => {
+          this.imgSrc = reader.result
+        }
+        reader.readAsDataURL(file)
+        this.image = file
       }
     }
   }

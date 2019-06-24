@@ -27,7 +27,7 @@ new Vue({
       authDomain: 'ads-project.firebaseapp.com',
       databaseURL: 'https://ads-project-76ede.firebaseio.com',
       projectId: 'ads-project',
-      storageBucket: 'ads-projec.appspot.com',
+      storageBucket: 'ads-project-76ede.appspot.com',
       messagingSenderId: '352599408346'
     })
 
