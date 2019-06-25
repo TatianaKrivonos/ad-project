@@ -23,8 +23,9 @@
             <v-list-tile-action>
               <v-checkbox
                 color="info"
-                @change="markDone(order)">
-                :input-value="order.done"
+                @change="markDone(order)"
+                :input-value="order.done">
+
               </v-checkbox>
             </v-list-tile-action>
 
@@ -59,7 +60,11 @@
     },
     methods: {
       markDone (order) {
-        order.done = true
+        this.$store.dispatch('markOrderDone', order.id)
+          .then(() => {
+            order.done = true
+          })
+          .catch(() => {})
       }
     },
     created () {
