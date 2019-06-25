@@ -19,7 +19,7 @@
               v-if="isOwner"
             >
             </app-edit-ad-modal>
-            <v-btn class="success">Buy</v-btn>
+            <app-buy-modal :ad="ad"></app-buy-modal>
           </v-card-actions>
         </v-card>
         <div v-else class="text-xs-center">

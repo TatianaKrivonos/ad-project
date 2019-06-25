@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as fb from 'firebase'
+import BuyModalComponent from '@/components/Shared/BuyModal'
 import  './stylus/main.styl'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -12,7 +13,8 @@ Vue.use(Vuetify, {
   iconfont: 'md'
 })
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
+Vue.component('app-buy-modal', BuyModalComponent)
 
 /* eslint-disable no-new */
 new Vue({
