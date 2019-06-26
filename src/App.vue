@@ -62,23 +62,23 @@
     <v-content>
       <router-view></router-view>
     </v-content>
-    <!-- <template v-if="error"> -->
-     <!--  <v-snackbar
+    <template v-if="error">
+      <v-snackbar
         :multi-line="true"
-        :timeout="50000"
+        :timeout="7000"
         color="error"
         @input="closeError"
         :value="true"
       >
       {{ error }}
-      <v-btn
-        flat
-        @click="closeError"
-      >
-        Close
-      </v-btn>
-    </v-snackbar> -->
-    <!-- </template> -->
+        <v-btn
+          flat
+          @click="closeError"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
+    </template>
   </v-app>
 </template>
 
@@ -91,8 +91,7 @@ export default {
   },
   computed: {
     error () {
-      // return this.$store.getters.error
-      return 'Try again'
+      return this.$store.getters.error
     },
     isUserLoggedIn () {
       return this.$store.getters.isUserLoggedIn
