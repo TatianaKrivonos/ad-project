@@ -9,8 +9,12 @@ import BuyModalComponent from '@/components/Shared/BuyModal'
 import  './stylus/main.styl'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import colors from 'vuetify/es5/util/colors'
 Vue.use(Vuetify, {
-  iconfont: 'md'
+  iconfont: 'md',
+  theme: {
+    primary: colors.teal.lighten1
+  }
 })
 
 Vue.config.productionTip = false
